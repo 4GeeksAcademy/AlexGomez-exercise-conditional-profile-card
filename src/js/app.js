@@ -35,14 +35,29 @@ function render(variables = {}) {
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
           <img src="${variables.avatarURL}" class="photo" />
-          <h1>${variables.name} ${variables.lastName}</h1>
-          <h2>${variables.role}</h2>
-          <h3>${variables.city}, ${variables.country}</h3>
-          <ul class="${variables.socialMediaPosition}">
-            <li><a href="https://twitter.com/${variables.twitter}"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="https://github.com/${variables.github}"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://linkedin.com/${variables.linkedin}"><i class="fab fa-linkedin"></i></a></li>
-            <li><a href="https://instagram.com/${variables.instagram}"><i class="fab fa-instagram"></i></a></li>
+          <h1>${!variables.name ? "Name" : variables.name} 
+          ${!variables.lastName ? "Last Name" : variables.lastName}</h1>
+          <h2>${!variables.role ? "Role" : variables.role}</h2>
+          <h3>${!variables.city ? "City" : variables.city}, ${
+    !variables.country ? "Country" : variables.country
+  }</h3>
+          <ul class="${
+            !variables.socialMediaPosition
+              ? "socialMediaPosition"
+              : variables.socialMediaPosition
+          }">
+            <li><a href="https://twitter.com/${
+              !variables.twitter ? "Country" : variables.country
+            }"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://github.com/${
+              !variables.github ? "Github" : variables.github
+            }"><i class="fab fa-github"></i></a></li>
+            <li><a href="https://linkedin.com/${
+              !variables.linkedin ? "Linkedin" : variables.linkedin
+            }"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://instagram.com/${
+              !variables.instagram ? "Instagram" : variables.instagram
+            }"><i class="fab fa-instagram"></i></a></li>
           </ul>
         </div>
     `;
@@ -66,11 +81,11 @@ window.onload = function() {
     github: null,
     linkedin: null,
     instagram: null,
-    name: "Name",
-    lastName: "Last name",
-    role: "Role",
-    country: "Country",
-    city: "City"
+    name: null,
+    lastName: null,
+    role: null,
+    country: null,
+    city: null
   };
   render(window.variables); // render the card for the first time
 
